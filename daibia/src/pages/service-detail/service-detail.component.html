@@ -1,0 +1,25 @@
+<app-home-hero [headerOnly]="true" [initialNav]="service === 'ai-solutions' ? 'ai-services' : 'services'"></app-home-hero>
+
+<div class="back-bar">
+  <a routerLink="/" [fragment]="bandId">&larr; All services</a>
+</div>
+
+@switch (service) {
+  @case ('web-applications') {
+    <app-service-web-app (requestEstimate)="contact.selectCategory($event)"></app-service-web-app>
+  }
+  @case ('api-database') {
+    <app-service-api-database (discussArchitecture)="contact.selectCategory($event)"></app-service-api-database>
+  }
+  @case ('business-intelligence') {
+    <app-service-bi-analytics (requestDemo)="contact.selectCategory($event)"></app-service-bi-analytics>
+  }
+  @case ('hosting-backup') {
+    <app-service-sovereign-hosting (planHosting)="contact.selectCategory($event)"></app-service-sovereign-hosting>
+  }
+  @case ('ai-solutions') {
+    <app-ai-services (requestAiService)="contact.selectCategory($event)"></app-ai-services>
+  }
+}
+
+<app-contact-us #contact></app-contact-us>

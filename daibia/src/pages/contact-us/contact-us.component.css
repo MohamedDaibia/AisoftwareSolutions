@@ -1,0 +1,62 @@
+:host { display: block; font-family: 'Barlow', Roboto, Arial, sans-serif; }
+.contact-section { position: relative; overflow: hidden; background: #000000; padding: 64px 24px 80px; color: #fafafa; }
+.container { position: relative; z-index: 1; max-width: 1120px; margin: 0 auto; }
+.section-bg-animation {
+  position: absolute; inset: 0; pointer-events: none; z-index: 0;
+  mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
+}
+.bg-svg { width: 100%; height: 100%; display: block; }
+.spin { transform-box: fill-box; transform-origin: center; animation: spin 32s linear infinite; }
+.ripple { transform-box: fill-box; transform-origin: center; opacity: 0; animation: ripple 6s ease-out infinite; }
+.r2 { animation-delay: 2s; } .r3 { animation-delay: 4s; }
+.flow { stroke-dasharray: 280 520; stroke-dashoffset: 800; animation: flow 14s linear infinite; }
+.float { animation: bob 7s ease-in-out infinite; }
+.float.slow { animation-duration: 9s; }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes ripple { 0% { transform: scale(0.5); opacity: 0.55; } 100% { transform: scale(3.6); opacity: 0; } }
+@keyframes flow { to { stroke-dashoffset: 0; } }
+@keyframes bob { 0%, 100% { translate: 0 0; } 50% { translate: 0 -12px; } }
+@media (prefers-reduced-motion: reduce) { .spin, .ripple, .flow, .float { animation: none; } .ripple { opacity: .25; } }
+.section-head { text-align: center; margin-bottom: 40px; }
+.eyebrow { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.14em; color: #a3a3a3; }
+.section-title { font-size: clamp(1.6rem, 3vw, 2.2rem); margin: 10px 0 8px; font-weight: 800; }
+.section-sub { color: #fafafa; margin: 0; }
+.contact-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 28px; }
+.info-card, .form-card {
+  background: #111111; backdrop-filter: blur(4px); border: 1px solid rgba(255, 255, 255, 0.14); border-radius: 16px; padding: 28px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+}
+.info-card h3 { margin: 0 0 16px; font-size: 1.15rem; }
+.info-list { list-style: none; padding: 0; margin: 0 0 24px; display: grid; gap: 14px; }
+.info-label { display: block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; color: #a3a3a3; text-transform: uppercase; }
+.info-list a { color: #a3a3a3; font-weight: 600; text-decoration: none; }
+.info-list a:hover { text-decoration: underline; }
+.book-btn, .submit-btn {
+  display: inline-flex; align-items: center; justify-content: center; padding: 11px 22px;
+  border-radius: 9999px; background: linear-gradient(135deg, #111111 0%, #1c1c1c 100%);
+  border: 1.5px solid rgba(255, 255, 255, 0.14); color: #a3a3a3; font-size: 0.92rem; font-weight: 700;
+  cursor: pointer; text-decoration: none; transition: transform .15s ease, box-shadow .15s ease;
+}
+.book-btn:hover, .submit-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(99, 102, 241, 0.25); }
+.field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+.field label { font-size: 0.85rem; font-weight: 600; color: #fafafa; }
+.field input, .field textarea, .field select {
+  font: inherit; padding: 10px 12px; border: 1px solid rgba(255, 255, 255, 0.14); border-radius: 10px; background: #111111; resize: vertical;
+}
+.field input:focus, .field textarea:focus, .field select:focus { outline: 2px solid rgba(255, 255, 255, 0.14); border-color: rgba(255, 255, 255, 0.5); }
+.err { color: #b91c1c; font-size: 0.78rem; }
+.ok { color: #a3a3a3; font-size: 0.88rem; margin: 14px 0 0; }
+@media (max-width: 860px) { .contact-grid { grid-template-columns: 1fr; } .contact-section { padding: 48px 16px 64px; } }
+
+.field select:disabled { background: #111111; color: #d4d4d4; cursor: not-allowed; }
+
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.err-msg { color: #b91c1c; font-size: 0.88rem; margin: 14px 0 0; }
+.submit-btn:disabled { opacity: .6; cursor: not-allowed; transform: none; box-shadow: none; }
+
+.wa-link { display: inline-flex; align-items: center; gap: 8px; }
+
+
+/* Primary buttons: solid white with black text */
+.book-btn, .submit-btn, .book-btn:hover, .submit-btn:hover { background: #fafafa; color: #000000; border-color: #fafafa; border-radius: 4px; }

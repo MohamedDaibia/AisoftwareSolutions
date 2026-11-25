@@ -1,0 +1,313 @@
+<section id="service-01" class="service-section">
+  <!-- Service 01 Themed Background SVG (Web, Windows & Mobile Wireframes) -->
+  <div class="section-bg-animation" aria-hidden="true">
+    <svg class="bg-svg" viewBox="0 0 1440 760" fill="none" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="uiDotGrid" width="32" height="32" patternUnits="userSpaceOnUse">
+          <circle cx="2" cy="2" r="1.1" fill="#e5e5e5" fill-opacity="0.1" />
+        </pattern>
+        <linearGradient id="uiStrokeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#a3a3a3" stop-opacity="0.28" />
+          <stop offset="100%" stop-color="#a3a3a3" stop-opacity="0.14" />
+        </linearGradient>
+      </defs>
+
+      <!-- Subtle UI Dot Grid -->
+      <rect width="1440" height="760" fill="url(#uiDotGrid)" />
+
+      <!-- Floating Web Browser Window Wireframe (Top Right) -->
+      <g class="float-frame-slow" transform="translate(1060, 42)">
+        <rect x="0" y="0" width="320" height="200" rx="14" stroke="url(#uiStrokeGrad)" stroke-width="1.6" fill="#262626" fill-opacity="0.35" />
+        <line x1="0" y1="30" x2="320" y2="30" stroke="#737373" stroke-opacity="0.22" stroke-width="1.2" />
+        <circle cx="18" cy="15" r="3.5" fill="#a3a3a3" fill-opacity="0.35" />
+        <circle cx="30" cy="15" r="3.5" fill="#a3a3a3" fill-opacity="0.35" />
+        <circle cx="42" cy="15" r="3.5" fill="#e5e5e5" fill-opacity="0.2" />
+        <!-- Inner UI Skeleton Blocks -->
+        <rect x="20" y="48" width="90" height="12" rx="4" fill="#a3a3a3" fill-opacity="0.12" />
+        <rect x="20" y="72" width="175" height="95" rx="8" stroke="#e5e5e5" stroke-opacity="0.12" stroke-width="1.2" />
+        <rect x="210" y="72" width="90" height="42" rx="6" fill="#a3a3a3" fill-opacity="0.09" />
+        <rect x="210" y="125" width="90" height="42" rx="6" fill="#a3a3a3" fill-opacity="0.09" />
+      </g>
+
+      <!-- Floating Mobile App Frame (Bottom Left) -->
+      <g class="float-frame-reverse" transform="translate(48, 460)">
+        <rect x="0" y="0" width="130" height="240" rx="22" stroke="url(#uiStrokeGrad)" stroke-width="1.6" fill="#262626" fill-opacity="0.35" />
+        <rect x="45" y="12" width="40" height="4" rx="2" fill="#e5e5e5" fill-opacity="0.18" />
+        <rect x="16" y="32" width="98" height="54" rx="8" fill="#a3a3a3" fill-opacity="0.1" />
+        <rect x="16" y="98" width="98" height="14" rx="4" fill="#e5e5e5" fill-opacity="0.08" />
+        <rect x="16" y="120" width="72" height="14" rx="4" fill="#e5e5e5" fill-opacity="0.06" />
+        <rect x="16" y="150" width="44" height="44" rx="8" fill="#a3a3a3" fill-opacity="0.1" />
+        <rect x="70" y="150" width="44" height="44" rx="8" fill="#a3a3a3" fill-opacity="0.1" />
+      </g>
+
+      <!-- Connecting Responsive Layout Curve -->
+      <path
+        class="blueprint-line"
+        d="M 180 560 C 520 520, 860 260, 1060 150"
+        stroke="url(#uiStrokeGrad)"
+        stroke-width="1.5"
+        stroke-dasharray="6 8"
+      />
+    </svg>
+  </div>
+
+  <div class="container">
+    <h2 class="section-title">Custom Web, Windows &amp; Mobile Application Development</h2>
+    <p class="section-subtitle">Cross-Platform Software, Intuitive UI/UX &amp; Intelligent Workflows</p>
+
+    <!-- Collapsible Executive Overview Banner -->
+    <div
+      class="overview-banner"
+      (click)="toggleOverview()"
+      (keydown.enter)="toggleOverview()"
+      role="button"
+      tabindex="0"
+      [attr.aria-expanded]="isOverviewExpanded()"
+    >
+      <div class="overview-accent"></div>
+      <div class="overview-content">
+        <h3>Executive Overview: How Custom Applications Streamline Operations</h3>
+        @if (isOverviewExpanded()) {
+          <p>
+            Purpose-built Web, Windows, and Mobile applications tailored to your exact workflows—pairing intuitive
+            user interfaces with secure backends to eliminate manual bottlenecks.
+          </p>
+        }
+      </div>
+      <span class="chevron" [class.rotated]="!isOverviewExpanded()" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+          <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+      </span>
+    </div>
+
+    <!-- 4 Sub-Service Cards Grid -->
+    <div class="cards-grid">
+      @for (item of subServices; track item.number; let i = $index) {
+        <div class="service-card" [class.expanded]="expandedCardIndex() === i">
+          <img class="card-photo" [src]="cardPhotos[subServices.indexOf(item)]" alt="" loading="lazy" width="800" height="1000"
+            (error)="$any($event.target).hidden = true" />
+          <div class="card-top-bar"></div>
+
+          <!-- Multi-Tone Icon + Heading on the Same Line -->
+          <div class="card-header-row">
+            <div class="icon-box" [ngClass]="'icon-bg-' + item.icon">
+              @switch (item.icon) {
+                @case ('code') {
+                  <!-- Violet & Deep Indigo Browser / Code Icon -->
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2.5" fill="#262626" stroke="#e5e5e5"></rect>
+                    <line x1="3" y1="8.5" x2="21" y2="8.5" stroke="#e5e5e5"></line>
+                    <polyline points="9 12.2 7 14.2 9 16.2" stroke="#e5e5e5"></polyline>
+                    <polyline points="15 12.2 17 14.2 15 16.2" stroke="#e5e5e5"></polyline>
+                    <line x1="13" y1="11.2" x2="11" y2="17.2" stroke="#e5e5e5"></line>
+                  </svg>
+                }
+                @case ('portal') {
+                  <!-- Cyan & Ocean Indigo Portal Layout Icon -->
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="14" rx="2.5" fill="#262626" stroke="#e5e5e5"></rect>
+                    <line x1="3" y1="8.5" x2="21" y2="8.5" stroke="#e5e5e5"></line>
+                    <polygon points="9 11 7 15 11 15" fill="#a3a3a3" stroke="#e5e5e5"></polygon>
+                    <line x1="13.5" y1="12" x2="18" y2="12" stroke="#e5e5e5"></line>
+                    <line x1="13.5" y1="15" x2="17" y2="15" stroke="#e5e5e5"></line>
+                  </svg>
+                }
+                @case ('chart') {
+                  <!-- UI/UX Wireframe Layout + Smart Search Icon -->
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3.5" width="14" height="14" rx="2.5" fill="#262626" stroke="#e5e5e5"></rect>
+                    <line x1="3" y1="7.5" x2="17" y2="7.5" stroke="#e5e5e5"></line>
+                    <rect x="5.5" y="10" width="4" height="4.5" rx="0.8" fill="#a3a3a3" stroke="#e5e5e5" stroke-width="1.4"></rect>
+                    <line x1="11.5" y1="10.5" x2="14.5" y2="10.5" stroke="#e5e5e5"></line>
+                    <line x1="11.5" y1="13.5" x2="13.5" y2="13.5" stroke="#e5e5e5"></line>
+                    <circle cx="16.5" cy="16.5" r="3.5" fill="#262626" stroke="#D97706" stroke-width="1.8"></circle>
+                    <line x1="19" y1="19" x2="21.2" y2="21.2" stroke="#D97706" stroke-width="2"></line>
+                  </svg>
+                }
+                @case ('legacy') {
+                  <!-- Legacy System Upgrading to Modern Platform Icon -->
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="13.5" width="8" height="7" rx="1.5" fill="#262626" stroke="#e5e5e5"></rect>
+                    <line x1="5" y1="16.2" x2="9" y2="16.2" stroke="#e5e5e5" stroke-width="1.4"></line>
+                    <line x1="5" y1="18.3" x2="7.5" y2="18.3" stroke="#e5e5e5" stroke-width="1.4"></line>
+                    <rect x="11.5" y="3.5" width="9.5" height="8" rx="2" fill="#262626" stroke="#e5e5e5"></rect>
+                    <line x1="11.5" y1="6.3" x2="21" y2="6.3" stroke="#e5e5e5" stroke-width="1.4"></line>
+                    <circle cx="13.8" cy="4.9" r="0.6" fill="#a3a3a3" stroke="none"></circle>
+                    <path d="M14.2 9L15.6 10.3L18.4 7.8" stroke="#e5e5e5" stroke-width="1.6"></path>
+                    <path d="M6.5 11C6.5 8.2 8.2 6.8 10 6.8" stroke="#e5e5e5" stroke-width="1.8"></path>
+                    <polyline points="8.6 5.2 10.3 6.8 8.6 8.4" stroke="#e5e5e5" stroke-width="1.8"></polyline>
+                    <path d="M17.5 15.5V19.5M15.5 17.5H19.5" stroke="#e5e5e5" stroke-width="1.8"></path>
+                  </svg>
+                }
+              }
+            </div>
+            <h4 class="card-title">{{ item.title }}</h4>
+          </div>
+
+          <p class="card-desc">{{ item.description }}</p>
+
+          <!-- Expandable Deliverables Drawer -->
+          @if (expandedCardIndex() === i) {
+            <ul class="deliverables-list">
+              @for (point of item.deliverables; track point) {
+                <li>{{ point }}</li>
+              }
+            </ul>
+          }
+
+          <button type="button" class="explore-btn" (click)="toggleCard(i)" [attr.aria-expanded]="expandedCardIndex() === i">
+            <span>{{ expandedCardIndex() === i ? 'Show Less' : 'Learn More' }}</span>
+            <svg
+              width="13"
+              height="13"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.2"
+              [class.rotated]="expandedCardIndex() === i"
+            >
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+        </div>
+      }
+    </div>
+
+    <!-- Supported Platforms & Design Stack Collapsible Block (Closed Initially) -->
+    <div class="platforms-block" [class.open]="isPlatformsExpanded()">
+      <div
+        class="platforms-header platforms-toggle"
+        (click)="togglePlatforms()"
+        (keydown.enter)="togglePlatforms()"
+        role="button"
+        tabindex="0"
+        [attr.aria-expanded]="isPlatformsExpanded()"
+      >
+        <div class="platforms-badge">          
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="2" y="3" width="20" height="14" rx="2" />
+            <line x1="8" y1="21" x2="16" y2="21" />
+            <line x1="12" y1="17" x2="12" y2="21" />
+          </svg>
+          <span>DESIGN &amp; MULTI-PLATFORM DELIVERY</span>
+        </div>
+
+        <h3 class="platforms-title">
+          Supported <span class="title-highlight">Platforms, Environments &amp; Design Tools</span>
+        </h3>
+
+        <p class="platforms-subtitle">
+          Cross-platform deployment across desktop, mobile, and cloud paired with modern UI/UX and motion design tools.
+        </p>
+
+        <span class="platforms-toggle-cta">
+          <span>{{ isPlatformsExpanded() ? 'Hide Supported Platforms' : 'View All ' + platforms.length + ' Platforms & Tools' }}</span>
+          <svg
+            width="15"
+            height="15"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.3"
+            [class.rotated]="isPlatformsExpanded()"
+            aria-hidden="true"
+          >
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </span>
+      </div>
+
+      @if (isPlatformsExpanded()) {
+        <div class="platforms-grid">
+          @for (item of platforms; track item.name) {
+            <div class="platform-pill">
+              <span class="platform-icon" aria-hidden="true">
+                @switch (item.icon) {
+                  @case ('figma') {
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                      <path d="M8.5 3.5H12V8.5H8.5C7.12 8.5 6 7.38 6 6C6 4.62 7.12 3.5 8.5 3.5Z" fill="#F24E1E" />
+                      <path d="M12 3.5H15.5C16.88 3.5 18 4.62 18 6C18 7.38 16.88 8.5 15.5 8.5H12V3.5Z" fill="#a3a3a3" />
+                      <path d="M12 8.5H15.5C16.88 8.5 18 9.62 18 11C18 12.38 16.88 13.5 15.5 13.5H12V8.5Z" fill="#a3a3a3" />
+                      <path d="M8.5 8.5H12V13.5H8.5C7.12 13.5 6 12.38 6 11C6 9.62 7.12 8.5 8.5 8.5Z" fill="#a3a3a3" />
+                      <path d="M8.5 13.5H12V16C12 17.38 10.88 18.5 9.5 18.5C8.12 18.5 7 17.38 7 16C7 14.62 7.62 13.5 8.5 13.5Z" fill="#0ACF83" />
+                    </svg>
+                  }
+                  @case ('android') {
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                      <rect x="2.5" y="2.5" width="19" height="19" rx="5" fill="#262626" stroke="#e5e5e5" stroke-width="1.3" />
+                      <path d="M6.5 15.5C6.5 12.2 8.9 9.8 12 9.8C15.1 9.8 17.5 12.2 17.5 15.5H6.5Z" fill="#3DDC84" />
+                      <line x1="9" y1="10.5" x2="7.5" y2="8" stroke="#3DDC84" stroke-width="1.5" stroke-linecap="round" />
+                      <line x1="15" y1="10.5" x2="16.5" y2="8" stroke="#3DDC84" stroke-width="1.5" stroke-linecap="round" />
+                      <circle cx="9.8" cy="13.2" r="0.85" fill="#262626" />
+                      <circle cx="14.2" cy="13.2" r="0.85" fill="#262626" />
+                    </svg>
+                  }
+                  @case ('ios') {
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                      <rect x="2.5" y="2.5" width="19" height="19" rx="5" fill="#262626" stroke="#e5e5e5" stroke-width="1.3" />
+                      <path d="M14.8 12.4C14.8 10.7 16.2 9.8 16.3 9.7C15.5 8.5 14.2 8.4 13.8 8.3C12.7 8.2 11.7 8.9 11.2 8.9C10.7 8.9 9.8 8.3 8.9 8.3C7.7 8.3 6.6 9 6 10.1C4.7 12.3 5.7 15.5 6.9 17.3C7.5 18.2 8.2 19.1 9.1 19.1C10 19.1 10.3 18.5 11.4 18.5C12.5 18.5 12.8 19.1 13.7 19.1C14.6 19.1 15.2 18.3 15.8 17.4C16.5 16.4 16.8 15.4 16.8 15.3C16.8 15.2 14.8 14.5 14.8 12.4Z" fill="#e5e5e5" />
+                      <path d="M13.2 7.1C13.7 6.5 14 5.7 13.9 4.8C13.2 4.8 12.3 5.3 11.8 5.9C11.4 6.4 11 7.2 11.1 8C11.9 8.1 12.7 7.6 13.2 7.1Z" fill="#e5e5e5" />
+                    </svg>
+                  }
+                  @case ('windows') {
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                      <rect x="2.5" y="2.5" width="19" height="19" rx="5" fill="#262626" stroke="#e5e5e5" stroke-width="1.3" />
+                      <rect x="6.5" y="6.5" width="4.8" height="4.8" rx="0.6" fill="#e5e5e5" />
+                      <rect x="12.7" y="6.5" width="4.8" height="4.8" rx="0.6" fill="#e5e5e5" />
+                      <rect x="6.5" y="12.7" width="4.8" height="4.8" rx="0.6" fill="#e5e5e5" />
+                      <rect x="12.7" y="12.7" width="4.8" height="4.8" rx="0.6" fill="#e5e5e5" />
+                    </svg>
+                  }
+                  @case ('cloud') {
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e5e5e5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M17.5 18H7a4.5 4.5 0 0 1-.4-8.98A6 6 0 0 1 18.2 10.5 3.8 3.8 0 0 1 17.5 18Z" fill="#262626" />
+                      <polyline points="10 13.5 12 11.5 14 13.5" stroke="#e5e5e5" />
+                      <line x1="12" y1="11.5" x2="12" y2="16" stroke="#e5e5e5" />
+                    </svg>
+                  }
+                  @case ('dashboards') {
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e5e5e5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="3" y="4" width="18" height="16" rx="2.5" fill="#262626" />
+                      <line x1="3" y1="8.5" x2="21" y2="8.5" />
+                      <rect x="6.5" y="11.5" width="4.5" height="5.5" rx="1" fill="#262626" />
+                      <line x1="13.5" y1="12.5" x2="17.5" y2="12.5" stroke="#e5e5e5" />
+                      <line x1="13.5" y1="15.5" x2="16.5" y2="15.5" stroke="#e5e5e5" />
+                    </svg>
+                  }
+                  @case ('web') {
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e5e5e5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="8.5" fill="#262626" />
+                      <ellipse cx="12" cy="12" rx="3.8" ry="8.5" stroke="#e5e5e5" />
+                      <line x1="3.8" y1="12" x2="20.2" y2="12" stroke="#e5e5e5" />
+                    </svg>
+                  }
+                  @case ('illustrator') {
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                      <rect x="2.5" y="2.5" width="19" height="19" rx="5" fill="#e5e5e5" stroke="#FF9A00" stroke-width="1.4" />
+                      <text x="6.6" y="15.4" font-size="9.2" font-weight="800" font-family="sans-serif" fill="#FF9A00">Ai</text>
+                    </svg>
+                  }
+                  @case ('after-effects') {
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                      <rect x="2.5" y="2.5" width="19" height="19" rx="5" fill="#e5e5e5" stroke="#737373" stroke-width="1.4" />
+                      <text x="6" y="15.4" font-size="9" font-weight="800" font-family="sans-serif" fill="#fafafa">Ae</text>
+                    </svg>
+                  }
+                }
+              </span>
+              <span class="platform-name">{{ item.name }}</span>
+            </div>
+          }
+        </div>
+      }
+    </div>
+
+    <!-- Centered Bottom CTA -->
+    <div class="cta-wrapper">
+      <button type="button" class="cta-pill" (click)="onEstimateClick()">
+        Request a Project Estimate
+      </button>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,277 @@
+<section id="service-03" class="service-section">
+  <!-- Service 03 Themed Background SVG (Revenue Trendlines, Rising Bars & KPI Sparklines) -->
+  <div class="section-bg-animation" aria-hidden="true">
+    <svg class="bg-svg" viewBox="0 0 1440 760" fill="none" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <!-- Chart Axis Grid -->
+        <pattern id="analyticsGrid" width="56" height="56" patternUnits="userSpaceOnUse">
+          <path d="M 56 0 L 0 0 0 56" fill="none" stroke="#e5e5e5" stroke-opacity="0.055" stroke-width="1" />
+        </pattern>
+
+        <linearGradient id="trendGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#a3a3a3" stop-opacity="0.08" />
+          <stop offset="50%" stop-color="#a3a3a3" stop-opacity="0.45" />
+          <stop offset="100%" stop-color="#a3a3a3" stop-opacity="0.55" />
+        </linearGradient>
+
+        <linearGradient id="areaFillGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#a3a3a3" stop-opacity="0.14" />
+          <stop offset="100%" stop-color="#a3a3a3" stop-opacity="0" />
+        </linearGradient>
+
+        <linearGradient id="barGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+          <stop offset="0%" stop-color="#a3a3a3" stop-opacity="0.06" />
+          <stop offset="100%" stop-color="#a3a3a3" stop-opacity="0.22" />
+        </linearGradient>
+      </defs>
+
+      <!-- Subtle Chart Grid -->
+      <rect width="1440" height="760" fill="url(#analyticsGrid)" />
+
+      <!-- Soft Area Under Growth Curve -->
+      <path
+        d="M -40 620 C 240 580, 420 460, 680 430 C 920 400, 1140 240, 1480 120 L 1480 760 L -40 760 Z"
+        fill="url(#areaFillGrad)"
+      />
+
+      <!-- Animated Growth Trendline -->
+      <path
+        class="growth-trendline"
+        d="M -40 620 C 240 580, 420 460, 680 430 C 920 400, 1140 240, 1480 120"
+        stroke="url(#trendGrad)"
+        stroke-width="2.2"
+      />
+
+      <!-- Predictive Dashed Forecast Extension -->
+      <path
+        class="forecast-line"
+        d="M 960 335 C 1140 215, 1300 140, 1480 65"
+        stroke="#737373"
+        stroke-opacity="0.4"
+        stroke-width="1.8"
+        stroke-dasharray="7 7"
+      />
+
+      <!-- Pulsing Data Milestone Dots on Curve -->
+      <g class="chart-milestones">
+        <circle class="milestone-dot" cx="420" cy="495" r="4.5" fill="#a3a3a3" fill-opacity="0.6" />
+        <circle class="milestone-ring" cx="420" cy="495" r="10" stroke="#737373" stroke-width="1.2" />
+
+        <circle class="milestone-dot delay-1" cx="960" cy="335" r="5" fill="#a3a3a3" fill-opacity="0.65" />
+        <circle class="milestone-ring delay-1" cx="960" cy="335" r="11" stroke="#737373" stroke-width="1.2" />
+
+        <circle class="milestone-dot delay-2" cx="1290" cy="185" r="5" fill="#a3a3a3" fill-opacity="0.65" />
+        <circle class="milestone-ring delay-2" cx="1290" cy="185" r="11" stroke="#737373" stroke-width="1.2" />
+      </g>
+
+      <!-- Rising Bar Chart Columns (Top Right) -->
+      <g class="rising-bars" transform="translate(1130, 46)">
+        <rect class="bar bar-1" x="0" y="70" width="22" height="60" rx="5" fill="url(#barGrad)" />
+        <rect class="bar bar-2" x="34" y="48" width="22" height="82" rx="5" fill="url(#barGrad)" />
+        <rect class="bar bar-3" x="68" y="30" width="22" height="100" rx="5" fill="url(#barGrad)" />
+        <rect class="bar bar-4" x="102" y="10" width="22" height="120" rx="5" fill="url(#barGrad)" />
+      </g>
+    </svg>
+  </div>
+
+  <div class="container">
+    <!-- Section Eyebrow & Headings -->
+    <h2 class="section-title">Business Intelligence &amp; Sales Analytics</h2>
+    <p class="section-subtitle">Revenue Performance, Product Margin Visibility &amp; Demand Forecasting</p>
+
+    <!-- Collapsible Executive Overview Banner -->
+    <div
+      class="overview-banner"
+      (click)="toggleOverview()"
+      (keydown.enter)="toggleOverview()"
+      role="button"
+      tabindex="0"
+      [attr.aria-expanded]="isOverviewExpanded()"
+    >
+      <div class="overview-accent"></div>
+      <div class="overview-content">
+        <h3>Executive Overview: Turning Sales Data Into Margin &amp; Inventory Decisions</h3>
+        @if (isOverviewExpanded()) {
+          <p>
+            Transforms everyday sales, order, and branch records into executive dashboards that highlight top-selling
+            SKUs, highest-margin products, and upcoming restock needs.
+          </p>
+        }
+      </div>
+      <span class="chevron" [class.rotated]="!isOverviewExpanded()" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+          <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+      </span>
+    </div>
+
+    <!-- 4 Sub-Service Cards Grid -->
+   <div class="cards-grid">
+      @for (item of subServices; track item.number; let i = $index) {
+        <div class="service-card" [class.expanded]="expandedCardIndex() === i">
+          <img class="card-photo" [src]="cardPhotos[subServices.indexOf(item)]" alt="" loading="lazy" width="800" height="1000"
+            (error)="$any($event.target).hidden = true" />
+          <div class="card-top-bar"></div>
+
+          <!-- Multi-Tone Icon + Heading on the Same Line -->
+          <div class="card-header-row">
+            <div class="icon-box" [ngClass]="'icon-bg-' + item.icon">
+              @switch (item.icon) {
+                @case ('margin') {
+                  <!-- Violet & Deep Indigo Margin Trend + Bar Chart Icon -->
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="15.5" width="2.6" height="4.5" rx="0.6" fill="#262626" stroke="#e5e5e5"></rect>
+                    <rect x="8.5" y="13.5" width="2.6" height="6.5" rx="0.6" fill="#a3a3a3" stroke="#e5e5e5"></rect>
+                    <rect x="13" y="14.5" width="2.6" height="5.5" rx="0.6" fill="#a3a3a3" stroke="#e5e5e5"></rect>
+                    <rect x="17.5" y="10.5" width="2.6" height="9.5" rx="0.6" fill="#a3a3a3" stroke="#e5e5e5"></rect>
+                    <polyline points="4.5 12.5 9.5 8.5 14 10.5 19.5 5" stroke="#e5e5e5" stroke-width="1.9"></polyline>
+                    <circle cx="4.5" cy="12.5" r="1.4" fill="#e5e5e5" stroke="none"></circle>
+                    <circle cx="9.5" cy="8.5" r="1.4" fill="#e5e5e5" stroke="none"></circle>
+                    <circle cx="14" cy="10.5" r="1.4" fill="#e5e5e5" stroke="none"></circle>
+                    <circle cx="19.5" cy="5" r="1.6" fill="#a3a3a3" stroke="none"></circle>
+                  </svg>
+                }
+                @case ('forecast') {
+                  <!-- Cyan & Ocean Indigo Predictive Forecast Window Icon -->
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2.5" fill="#262626" stroke="#e5e5e5"></rect>
+                    <rect x="6" y="14.5" width="2.2" height="3.5" rx="0.5" fill="#262626" stroke="#e5e5e5" stroke-width="1.4"></rect>
+                    <rect x="9.5" y="13" width="2.2" height="5" rx="0.5" fill="#a3a3a3" stroke="#e5e5e5" stroke-width="1.4"></rect>
+                    <rect x="13" y="14" width="2.2" height="4" rx="0.5" fill="#262626" stroke="#e5e5e5" stroke-width="1.4"></rect>
+                    <rect x="16.5" y="11.5" width="2.2" height="6.5" rx="0.5" fill="#a3a3a3" stroke="#e5e5e5" stroke-width="1.4"></rect>
+                    <polyline points="6 11.5 10 8.5 14 10.5 18 6.8" stroke="#e5e5e5" stroke-width="1.9"></polyline>
+                    <polyline points="15.2 6.8 18 6.8 18 9.6" stroke="#e5e5e5" stroke-width="1.9"></polyline>
+                  </svg>
+                }
+                @case ('customers') {
+                  <!-- Warm Amber & Indigo Customer Cohorts Icon -->
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="6.2" cy="10" r="2.2" fill="#262626" stroke="#D97706"></circle>
+                    <path d="M2.8 18c0-2 1.4-3.3 3.4-3.5" stroke="#D97706"></path>
+                    <circle cx="17.8" cy="10" r="2.2" fill="#262626" stroke="#D97706"></circle>
+                    <path d="M21.2 18c0-2-1.4-3.3-3.4-3.5" stroke="#D97706"></path>
+                    <circle cx="12" cy="8" r="3" fill="#262626" stroke="#e5e5e5"></circle>
+                    <path d="M7 18.2c0-2.8 2.2-4.6 5-4.6s5 1.8 5 4.6" fill="#262626" stroke="#e5e5e5"></path>
+                  </svg>
+                }
+                @case ('reporting') {
+                  <!-- Sky & Violet Automated Executive Report Export Icon -->
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5" fill="#262626" stroke="#e5e5e5"></path>
+                    <polyline points="14 3 14 8 19 8" stroke="#e5e5e5"></polyline>
+                    <line x1="8" y1="11.2" x2="12" y2="11.2" stroke="#e5e5e5"></line>
+                    <line x1="8" y1="14.2" x2="11" y2="14.2" stroke="#e5e5e5"></line>
+                    <line x1="8" y1="17.2" x2="12" y2="17.2" stroke="#e5e5e5"></line>
+                    <path d="M14.5 14h6l-2.5-2.5M20.5 14l-2.5 2.5" stroke="#e5e5e5" stroke-width="1.9"></path>
+                  </svg>
+                }
+              }
+            </div>
+            <h4 class="card-title">{{ item.title }}</h4>
+          </div>
+
+          <p class="card-desc">{{ item.description }}</p>
+
+          <!-- Expandable Deliverables Drawer -->
+          @if (expandedCardIndex() === i) {
+            <ul class="deliverables-list">
+              @for (point of item.deliverables; track point) {
+                <li>{{ point }}</li>
+              }
+            </ul>
+          }
+
+          <button type="button" class="explore-btn" (click)="toggleCard(i)" [attr.aria-expanded]="expandedCardIndex() === i">
+            <span>{{ expandedCardIndex() === i ? 'Show Less' : 'Learn More' }}</span>
+            <svg
+              width="13"
+              height="13"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.2"
+              [class.rotated]="expandedCardIndex() === i"
+            >
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+        </div>
+      }
+    </div>
+<!-- Supported BI & Visualization Platforms -->
+    <div class="tools-block">
+      <div class="tools-header">
+     <span class="tools-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="18" y1="20" x2="18" y2="10" />
+            <line x1="12" y1="20" x2="12" y2="4" />
+            <line x1="6" y1="20" x2="6" y2="14" />
+          </svg>
+          <span>BI &amp; VISUALIZATION STACK</span>
+        </span>
+        <h3 class="tools-title">Supported Analytics &amp; Dashboard Tools</h3>
+      </div>
+
+      <div class="tools-grid">
+        @for (tool of analyticsTools; track tool.name) {
+          <div class="tool-card">
+            <div class="tool-icon" aria-hidden="true">
+              @switch (tool.icon) {
+                @case ('powerbi') {
+                  <!-- Microsoft Power BI Bar Icon -->
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <rect x="3" y="3" width="18" height="18" rx="4.5" fill="#262626" stroke="#F59E0B" stroke-width="1.4" />
+                    <rect x="6.5" y="13" width="2.6" height="5" rx="1" fill="#D97706" />
+                    <rect x="10.7" y="10" width="2.6" height="8" rx="1" fill="#F59E0B" />
+                    <rect x="14.9" y="6.5" width="2.6" height="11.5" rx="1" fill="#FBBF24" />
+                  </svg>
+                }
+                @case ('tableau') {
+                  <!-- Tableau Crosshair Star Emblem -->
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <rect x="3" y="3" width="18" height="18" rx="4.5" fill="#262626" stroke="#e5e5e5" stroke-width="1.4" />
+                    <path d="M12 6.5V17.5M6.5 12H17.5" stroke="#e5e5e5" stroke-width="1.8" stroke-linecap="round" />
+                    <path d="M8.5 8.5V10.5M7.5 9.5H9.5" stroke="#E11D48" stroke-width="1.4" stroke-linecap="round" />
+                    <path d="M15.5 8.5V10.5M14.5 9.5H16.5" stroke="#F59E0B" stroke-width="1.4" stroke-linecap="round" />
+                    <path d="M8.5 13.5V15.5M7.5 14.5H9.5" stroke="#e5e5e5" stroke-width="1.4" stroke-linecap="round" />
+                    <path d="M15.5 13.5V15.5M14.5 14.5H16.5" stroke="#e5e5e5" stroke-width="1.4" stroke-linecap="round" />
+                  </svg>
+                }
+                @case ('looker') {
+                  <!-- Looker Studio (Google) Connected Nodes Icon -->
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <rect x="3" y="3" width="18" height="18" rx="4.5" fill="#262626" stroke="#e5e5e5" stroke-width="1.4" />
+                    <circle cx="14.5" cy="9.5" r="3" stroke="#e5e5e5" stroke-width="1.8" />
+                    <circle cx="8.5" cy="14.5" r="2.2" stroke="#e5e5e5" stroke-width="1.7" />
+                    <circle cx="14.5" cy="16.5" r="1.7" fill="#F59E0B" />
+                    <line x1="10.4" y1="13.2" x2="12.3" y2="11.5" stroke="#e5e5e5" stroke-width="1.5" />
+                  </svg>
+                }
+                @case ('embedded') {
+                  <!-- Custom Embedded Analytics (Angular / Chart.js / ECharts) -->
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#e5e5e5" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="3" fill="#262626" />
+                    <line x1="3" y1="8.5" x2="21" y2="8.5" />
+                    <polyline points="7 16 10.5 12.5 13.5 14.5 17 11" stroke="#e5e5e5" stroke-width="1.9" />
+                    <circle cx="17" cy="11" r="1.3" fill="#a3a3a3" stroke="none" />
+                  </svg>
+                }
+              }
+            </div>
+
+            <div class="tool-info">
+              <h4 class="tool-name">{{ tool.name }}</h4>
+              <p class="tool-subtitle">{{ tool.subtitle }}</p>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+    <!-- Centered Bottom CTA -->
+    <div class="cta-wrapper">
+      <button type="button" class="cta-pill" (click)="onDemoClick()">
+        Request an Analytics Demo
+      </button>
+    </div>
+  </div>
+</section>

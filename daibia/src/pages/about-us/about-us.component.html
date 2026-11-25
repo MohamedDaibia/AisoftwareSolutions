@@ -1,0 +1,137 @@
+<section id="about" class="about-section">
+  <!-- About Us Themed Background SVG (Precision Geometric Rings & Connecting Triads) -->
+  <div class="section-bg-animation" aria-hidden="true">
+    <svg class="bg-svg" viewBox="0 0 1440 720" fill="none" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="aboutDotGrid" width="44" height="44" patternUnits="userSpaceOnUse">
+          <circle cx="2" cy="2" r="1.1" fill="#e5e5e5" fill-opacity="0.08" />
+        </pattern>
+
+        <radialGradient id="aboutTopGlow" cx="50%" cy="15%" r="55%">
+          <stop offset="0%" stop-color="#a3a3a3" stop-opacity="0.14" />
+          <stop offset="45%" stop-color="#a3a3a3" stop-opacity="0.08" />
+          <stop offset="100%" stop-color="#a3a3a3" stop-opacity="0" />
+        </radialGradient>
+
+        <linearGradient id="pillarArcGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#a3a3a3" stop-opacity="0" />
+          <stop offset="50%" stop-color="#a3a3a3" stop-opacity="0.4" />
+          <stop offset="100%" stop-color="#a3a3a3" stop-opacity="0" />
+        </linearGradient>
+      </defs>
+
+      <!-- Subtle Dot Matrix & Top Aura -->
+      <rect width="1440" height="720" fill="url(#aboutDotGrid)" />
+      <rect width="1440" height="720" fill="url(#aboutTopGlow)" />
+
+      <!-- Rotating Precision Compass Rings (Top Left) -->
+      <g class="compass-rings" transform="translate(150, 140)">
+        <circle class="compass-spin" cx="0" cy="0" r="110" stroke="#737373" stroke-opacity="0.2" stroke-width="1.3" stroke-dasharray="8 10" />
+        <circle cx="0" cy="0" r="72" stroke="#737373" stroke-opacity="0.18" stroke-width="1.1" />
+      </g>
+
+      <!-- Connecting Triad Curve Across the 3 Pillars -->
+      <path
+        class="pillar-arc"
+        d="M -60 440 C 320 350, 1120 350, 1500 440"
+        stroke="url(#pillarArcGrad)"
+        stroke-width="1.8"
+      />
+    </svg>
+  </div>
+
+  <div class="container">
+    <!-- Top Pill & Section Headings -->
+    <div class="header-block">
+      <span class="eyebrow-pill">ABOUT US</span>
+      <h2 class="section-title">About Aisoftwaresolutions</h2>
+      <p class="section-subtitle">
+        We deliver custom web, software, automation, data analytics, and infrastructure solutions engineered with
+        precision—empowering businesses to operate efficiently and scale with confidence.
+      </p>
+
+      <!-- Core Commitment Callout: TIME, VALUE AND DATA -->
+      <div class="respect-banner" role="region" aria-label="Our Core Promise">
+        <span class="respect-lead">We respect your</span>
+        <div class="respect-pills">
+          @for (item of respectPrinciples; track item.label; let last = $last) {
+            <span class="respect-badge" [title]="item.detail">{{ item.label }}</span>
+            @if (!last) {
+              <span class="respect-sep" aria-hidden="true">&bull;</span>
+            }
+          }
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 Pillar Cards Grid -->
+    <div class="pillars-grid">
+      @for (pillar of pillars; track pillar.number) {
+        <div class="pillar-card">
+          <img class="card-photo" [src]="cardPhotos[pillars.indexOf(pillar)]" alt="" loading="lazy" width="800" height="450"
+            (error)="$any($event.target).hidden = true" />
+          <div class="card-top-bar"></div>
+
+          <!-- Top Icon -->
+          <div class="icon-box">
+            @switch (pillar.icon) {
+              @case ('trust') {
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#e5e5e5" stroke-width="1.6">
+                  <path d="M12 3l7 3v6c0 4.5-3 7.8-7 9-4-1.2-7-4.5-7-9V6l7-3z"></path>
+                  <rect x="9.5" y="11" width="5" height="4" rx="1"></rect>
+                  <path d="M10.5 11V9.5a1.5 1.5 0 0 1 3 0V11"></path>
+                </svg>
+              }
+              @case ('transparency') {
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#e5e5e5" stroke-width="1.6">
+                  <rect x="3" y="4" width="14" height="12" rx="2"></rect>
+                  <line x1="3" y1="8" x2="17" y2="8"></line>
+                  <line x1="6" y1="11" x2="10" y2="11"></line>
+                  <circle cx="15.5" cy="14.5" r="3.5" fill="#262626"></circle>
+                  <line x1="18" y1="17" x2="21" y2="20"></line>
+                </svg>
+              }
+              @case ('dedication') {
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#e5e5e5" stroke-width="1.6">
+                  <circle cx="12" cy="12" r="8.5"></circle>
+                  <polyline points="8.5 12.2 10.8 14.5 15.5 9.8"></polyline>
+                </svg>
+              }
+            }
+          </div>
+
+
+          <!-- Title + Inline Secondary Icon -->
+          <div class="title-row">
+            <h3 class="card-title">{{ pillar.title }}</h3>
+            @switch (pillar.icon) {
+              @case ('trust') {
+                <svg class="inline-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e5e5e5" stroke-width="1.6">
+                  <path d="M12 3l7 3v6c0 4.5-3 7.8-7 9-4-1.2-7-4.5-7-9V6l7-3z"></path>
+                  <rect x="9.5" y="11" width="5" height="4" rx="1"></rect>
+                  <path d="M10.5 11V9.5a1.5 1.5 0 0 1 3 0V11"></path>
+                </svg>
+              }
+              @case ('transparency') {
+                <svg class="inline-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e5e5e5" stroke-width="1.6">
+                  <circle cx="11" cy="11" r="6"></circle>
+                  <line x1="15.5" y1="15.5" x2="20" y2="20"></line>
+                </svg>
+              }
+              @case ('dedication') {
+                <svg class="inline-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e5e5e5" stroke-width="1.6">
+                  <circle cx="9.5" cy="9.5" r="2.5"></circle>
+                  <path d="M9.5 4.5v1.3M9.5 13.2v1.3M4.5 9.5h1.3M13.2 9.5h1.3M6 6l.9.9M12.1 12.1l.9.9M13 6l-.9.9M6.9 12.1L6 13"></path>
+                  <circle cx="16.5" cy="15.5" r="2"></circle>
+                  <path d="M16.5 11.8v1M16.5 18.2v1M12.8 15.5h1M19.2 15.5h1"></path>
+                </svg>
+              }
+            }
+          </div>
+
+          <p class="card-desc">{{ pillar.description }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>

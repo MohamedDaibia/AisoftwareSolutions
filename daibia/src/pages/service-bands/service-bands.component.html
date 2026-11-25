@@ -1,0 +1,14 @@
+@for (service of services; track service.slug; let odd = $odd) {
+  <section class="band" [class.band-right]="odd" [id]="service.id">
+    <img class="band-image" [src]="service.image" alt="" loading="lazy" (error)="$any($event.target).hidden = true" />
+    <div class="band-inner">
+      <div class="band-text">
+        <h2>{{ service.title }}</h2>
+        <p>{{ service.summary }}</p>
+        <a class="band-button" [routerLink]="['/services', service.slug]" [attr.aria-label]="'Learn more about ' + service.title">
+          Learn More <span aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
+    </div>
+  </section>
+}

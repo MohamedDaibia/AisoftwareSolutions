@@ -1,0 +1,19 @@
+:host {
+  display: block;
+}
+
+.back-bar {
+  padding: 14px 32px;
+  background: #000;
+  font-family: 'Barlow', Roboto, Arial, sans-serif;
+}
+
+.back-bar a {
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.back-bar a:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,358 @@
+/* You can add global styles to this file, and also import other style files */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: clip; /* Keeps sticky header working while preventing horizontal scroll */
+  scroll-behavior: smooth;
+  background: #111111;
+}
+
+section[id] {
+  scroll-margin-top: 82px;
+}
+
+@media (max-width: 768px) {
+  body {
+    padding-bottom: 72px;
+  }
+}
+
+/* Photo at the top of each card, above the text */
+.card-photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  flex-shrink: 0;
+}
+
+.card-photo[hidden] {
+  display: none;
+}
+
+/* Dark theme: black pages, dark cards, white buttons */
+:root { color-scheme: dark; }
+html, body { background: #000000; color: #fafafa; }
+body, button, input, textarea, select {
+  font-family: 'Barlow', Roboto, Arial, sans-serif;
+}
+
+/* Show the logo in white on the black header */
+.logo-img { filter: brightness(0) invert(1); }
+
+/* ===== Professional polish =====
+   ":root body" lets these rules override the page styles. */
+
+/* Header: one tidy line */
+:root body .brand-tagline { display: none; }
+:root body .brand-name { font-size: 1.1rem; font-weight: 700; letter-spacing: 0.08em; color: #ffffff; }
+:root body .logo-img { height: 32px; }
+:root body .nav-link,
+:root body .appointment-btn .btn-label { white-space: nowrap; }
+:root body .nav-link-ai { background: transparent; border: 0; box-shadow: none; }
+:root body .ai-spark-icon,
+:root body .appointment-btn .btn-shine,
+:root body .appointment-btn .btn-icon-left { display: none; }
+
+@media (max-width: 1099px) {
+  :root body .nav-links { display: none; }
+  :root body .desktop-only-btn { margin-left: auto; margin-right: 12px; }
+  :root body .mobile-header-actions { display: flex; align-items: center; gap: 8px; }
+  :root body .mobile-ai-chip { display: none; }
+  :root body .mobile-menu-toggle {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 6px; cursor: pointer; border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  :root body .mobile-nav-drawer {
+    display: flex; flex-direction: column; gap: 6px;
+    padding: 12px 20px 18px; background: #0b0b0b;
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+  }
+  :root body .mobile-nav-item {
+    text-align: left; padding: 10px 12px; border: 0; border-radius: 4px;
+    background: transparent; color: #fafafa; font-size: 0.95rem; cursor: pointer;
+  }
+}
+
+@media (max-width: 768px) {
+  :root body .desktop-only-btn { display: none; }
+}
+
+@media (max-width: 480px) {
+  :root body .brand-name { font-size: 0.82rem; letter-spacing: 0.04em; }
+  :root body .logo-img { height: 26px; }
+}
+
+/* Background graphics: soft white-grey, to suit the black theme */
+:root body .section-bg-animation,
+:root body .hero-bg-animation {
+  filter: grayscale(1);
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* Consistent cards */
+:root body :is(.service-card, .pillar-card, .tool-card, .platform-card, .info-card, .form-card, .ai-spotlight-card, .respect-banner, .overview-banner) {
+  background: #0d0d0d;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  box-shadow: none;
+}
+:root body :is(.service-card, .pillar-card):hover {
+  transform: none;
+  box-shadow: none;
+  border-color: rgba(255, 255, 255, 0.32);
+}
+:root body :is(.card-top-accent, .card-top-bar) { display: none; }
+
+/* Consistent buttons and readable headings */
+:root body :is(.appointment-btn, .cta-pill, .book-btn, .submit-btn) {
+  border-radius: 4px;
+  box-shadow: none;
+  letter-spacing: 0.01em;
+}
+:root body :is(.appointment-btn, .cta-pill, .book-btn, .submit-btn):hover {
+  background: #e5e5e5;
+  transform: none;
+  box-shadow: none;
+}
+:root body :is(h1, h2) { letter-spacing: -0.01em; text-wrap: balance; }
+:root body .respect-badge {
+  background: transparent; color: #fafafa;
+  border: 1px solid rgba(255, 255, 255, 0.28); border-radius: 4px;
+}
+
+:root body :is(a, button, input, select, textarea):focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+
+/* No icons on cards (small expand arrows stay, so cards still look clickable) */
+:root body :is(.service-card, .pillar-card, .tool-card, .platform-card, .ai-spotlight-card)
+  :is(.icon-box, .icon-wrapper, .inline-icon, .tool-icon, .platform-icon),
+:root body .info-card .wa-link svg { display: none; }
+
+/* Card photos run edge to edge. The side value matches each card's padding. */
+:root body .service-card { --pad-top: 24px; --pad-side: 22px; }
+:root body app-home-hero .service-card { --pad-top: 26px; }
+:root body .pillar-card { --pad-top: 28px; --pad-side: 26px; }
+:root body :is(.service-card, .pillar-card) > .card-photo {
+  width: calc(100% + 2 * var(--pad-side));
+  max-width: none;
+  margin: calc(-1 * var(--pad-top)) calc(-1 * var(--pad-side)) 18px;
+  border-radius: 0;
+}
+
+/* ===== Full-image home hero with services on it ===== */
+:root body app-home-hero .hero-section {
+  display: flex;
+  box-sizing: border-box;
+  min-height: calc(100vh - 68px);
+  padding: 28px 32px 24px;
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.25) 40%, rgba(0, 0, 0, 0.82) 75%, #000000 100%),
+    #000000 url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=2000&q=75') center / cover no-repeat;
+}
+
+:root body app-home-hero .hero-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1280px;
+}
+
+:root body .hero-services {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 28px;
+  margin-top: auto;
+  padding-top: 24px;
+  text-align: left;
+}
+
+:root body .hero-service {
+  display: flex;
+  flex-direction: column;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+:root body .hero-service:hover { border-top-color: #ffffff; }
+
+:root body .hero-service-title,
+:root body .hero-ai-title {
+  margin: 0 0 8px;
+  font-size: 1.15rem;
+  line-height: 1.3;
+  color: #ffffff;
+}
+
+:root body .hero-service-desc {
+  margin: 0 0 14px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #e5e5e5;
+}
+
+:root body .hero-service-link {
+  margin-top: auto;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+:root body .hero-service:hover .hero-service-link,
+:root body .hero-ai:hover .hero-service-link { text-decoration: underline; }
+
+:root body .hero-ai {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  text-align: left;
+  cursor: pointer;
+}
+
+:root body .hero-ai .hero-service-desc { margin: 0; }
+:root body .hero-ai .hero-service-link { margin-top: 0; }
+
+:root body .hero-ai-tag {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #d4d4d4;
+}
+
+:root body :is(.hero-service, .hero-ai):focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 4px;
+}
+
+:root body app-home-hero .hero-container .eyebrow-pill { align-self: center; }
+
+:root body app-home-hero .hero-container .hero-subtitle { margin-bottom: 0; }
+
+@media (max-width: 900px) {
+  :root body .hero-services { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 580px) {
+  :root body app-home-hero .hero-section { padding: 36px 20px 28px; }
+  :root body .hero-services { grid-template-columns: 1fr; gap: 20px; padding-top: 40px; }
+  :root body .hero-ai { flex-direction: column; align-items: flex-start; gap: 14px; }
+}
+
+/* ===== Service cards as image tiles with a Learn More button ===== */
+:root body .cards-grid .service-card:has(> .card-photo) {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  box-sizing: border-box;
+  min-height: 420px;
+  padding: 150px 20px 22px;
+  overflow: hidden;
+  text-align: left;
+}
+
+:root body .cards-grid .service-card > img.card-photo {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  margin: 0;
+  aspect-ratio: auto;
+  object-fit: cover;
+  border-radius: 0;
+  transition: transform 0.5s ease;
+}
+
+:root body .cards-grid .service-card > img.card-photo[hidden] { display: none; }
+
+:root body .cards-grid .service-card:hover > img.card-photo { transform: scale(1.05); }
+
+/* darkens the lower part of the photo so the text stays readable */
+:root body .cards-grid .service-card:has(> .card-photo)::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0.78) 62%, rgba(0, 0, 0, 0.95) 100%);
+  opacity: 1;
+  pointer-events: none;
+}
+
+:root body .cards-grid .service-card.expanded::after { background: rgba(0, 0, 0, 0.84); }
+
+:root body .cards-grid .service-card :is(.card-header-row, .card-desc) { margin: 0 0 10px; min-height: 0; }
+:root body .cards-grid .service-card .card-title { margin: 0; color: #ffffff; }
+:root body .cards-grid .service-card .card-desc { color: #e5e5e5; flex: 0 0 auto; }
+:root body .cards-grid .service-card .deliverables-list { margin-bottom: 14px; color: #ffffff; }
+:root body .cards-grid .service-card .deliverables-list li { color: #ffffff; }
+
+:root body .cards-grid .service-card .explore-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: auto;
+  margin: 6px 0 0;
+  padding: 10px 20px;
+  border: 1px solid #ffffff;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.35);
+  color: #ffffff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+:root body .cards-grid .service-card .explore-btn:hover { background: #ffffff; color: #000000; }
+
+/* Home hero background SVG in gold */
+:root body app-home-hero .hero-bg-animation {
+  filter: none;
+  opacity: 0.8;
+}
+
+/* AI Solutions: styled like the other links */
+:root body app-home-hero .nav-link-ai { position: relative; overflow: visible; }
+:root body app-home-hero :is(.nav-link-ai, .mobile-nav-ai) .ai-label,
+:root body app-home-hero .mobile-nav-ai span {
+  position: relative;
+  background: none;
+  color: inherit;
+  -webkit-text-fill-color: currentColor;
+  font-weight: inherit;
+}
+:root body app-home-hero .nav-link-ai { color: #ffffff; }
+:root body app-home-hero .nav-link-ai::after { display: none; }
+:root body app-home-hero .nav-link.nav-link-ai .ai-label {
+  color: #fafafa;
+  -webkit-text-fill-color: #fafafa;
+  font-weight: 500;
+}
+:root body app-home-hero .nav-link.nav-link-ai.active .ai-label {
+  color: #a3a3a3;
+  -webkit-text-fill-color: #a3a3a3;
+  font-weight: 600;
+}
+:root body app-home-hero .nav-link.nav-link-ai { padding: 6px 2px; }

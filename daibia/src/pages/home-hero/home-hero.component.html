@@ -1,0 +1,319 @@
+<!-- Sticky Navbar -->
+<!-- Sticky Navbar -->
+<header class="site-header">
+  <div class="nav-container">
+    <!-- Brand Logo -->
+    <a class="brand-logo" (click)="onNavClick('home', 'home')" role="button" tabindex="0">
+      <img src="/logo-indigo.png" alt="Aisoftwaresolutions" class="logo-img" />
+      <div class="brand-text">
+        <span class="brand-name">AISOFTWARESOLUTIONS</span>
+        <span class="brand-tagline">TECHNOLOGY SOLUTIONS</span>
+      </div>
+    </a>
+
+    <!-- Desktop Navigation Links -->
+    <nav class="nav-links" aria-label="Primary Navigation">
+      <button
+        type="button"
+        class="nav-link"
+        [class.active]="activeNav() === 'home'"
+        (click)="onNavClick('home', 'home')"
+      >
+        Home
+      </button>
+      <button
+        type="button"
+        class="nav-link"
+        [class.active]="activeNav() === 'services'"
+        (click)="onNavClick('service-01', 'services')"
+      >
+        Services
+      </button>
+      <button
+        type="button"
+        class="nav-link"
+        [class.active]="activeNav() === 'about'"
+        (click)="onNavClick('about', 'about')"
+      >
+        About Us
+      </button>
+      <button
+        type="button"
+        class="nav-link nav-link-ai"
+        [class.active]="activeNav() === 'ai-services'"
+        (click)="onNavClick('ai-services', 'ai-services')"
+      >
+        <svg class="ai-spark-icon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 2L14.2 8.8L21 11L14.2 13.2L12 20L9.8 13.2L3 11L9.8 8.8L12 2Z" />
+          <path d="M19 16L19.9 18.1L22 19L19.9 19.9L19 22L18.1 19.9L16 19L18.1 18.1L19 16Z" />
+        </svg>
+        <span class="ai-label">AI Solutions</span>
+      </button>
+      <button
+        type="button"
+        class="nav-link"
+        [class.active]="activeNav() === 'contact'"
+        (click)="onNavClick('contact', 'contact')"
+      >
+        Contact Us
+      </button>
+    </nav>
+
+    <!-- Desktop CTA Button -->
+    <button
+      type="button"
+      class="appointment-btn desktop-only-btn"
+      (click)="onBookAppointment()"
+    >
+      <span class="btn-shine" aria-hidden="true"></span>
+      <svg class="btn-icon-left" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+        <line x1="16" y1="2" x2="16" y2="6"></line>
+        <line x1="8" y1="2" x2="8" y2="6"></line>
+        <line x1="3" y1="10" x2="21" y2="10"></line>
+      </svg>
+      <span class="btn-label">Book an Appointment</span>
+      <svg class="btn-arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="5" y1="12" x2="19" y2="12"></line>
+        <polyline points="12 5 19 12 12 19"></polyline>
+      </svg>
+    </button>
+
+    <!-- Mobile Quick AI Pill + Hamburger Toggle -->
+    <div class="mobile-header-actions">
+      <button
+        type="button"
+        class="nav-link nav-link-ai mobile-ai-chip"
+        [class.active]="activeNav() === 'ai-services'"
+        (click)="onNavClick('ai-services', 'ai-services')"
+      >
+        <svg class="ai-spark-icon" width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 2L14.2 8.8L21 11L14.2 13.2L12 20L9.8 13.2L3 11L9.8 8.8L12 2Z" />
+        </svg>
+        <span class="ai-label">AI Services</span>
+      </button>
+
+      <button
+        type="button"
+        class="mobile-menu-toggle"
+        (click)="toggleMobileMenu()"
+        [attr.aria-expanded]="mobileMenuOpen()"
+        aria-label="Toggle navigation menu"
+      >
+        @if (mobileMenuOpen()) {
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        } @else {
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        }
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Dropdown Navigation Drawer -->
+  @if (mobileMenuOpen()) {
+    <nav class="mobile-nav-drawer" aria-label="Mobile Navigation">
+      <button
+        type="button"
+        class="mobile-nav-item"
+        [class.active]="activeNav() === 'home'"
+        (click)="onNavClick('home', 'home')"
+      >
+        Home
+      </button>
+      <button
+        type="button"
+        class="mobile-nav-item"
+        [class.active]="activeNav() === 'services'"
+        (click)="onNavClick('service-01', 'services')"
+      >
+        Services
+      </button>
+      <button
+        type="button"
+        class="mobile-nav-item mobile-nav-ai"
+        [class.active]="activeNav() === 'ai-services'"
+        (click)="onNavClick('ai-services', 'ai-services')"
+      >
+        <svg class="ai-spark-icon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 2L14.2 8.8L21 11L14.2 13.2L12 20L9.8 13.2L3 11L9.8 8.8L12 2Z" />
+        </svg>
+        <span>AI Services &amp; Assistants</span>
+      </button>
+      <button
+        type="button"
+        class="mobile-nav-item"
+        [class.active]="activeNav() === 'about'"
+        (click)="onNavClick('about', 'about')"
+      >
+        About Us
+      </button>
+      <button
+        type="button"
+        class="mobile-nav-item"
+        [class.active]="activeNav() === 'contact'"
+        (click)="onNavClick('contact', 'contact')"
+      >
+        Contact Us
+      </button>
+    </nav>
+  }
+</header>
+
+<div class="mobile-bottom-cta">
+  <button
+    type="button"
+    class="appointment-btn mobile-full-btn"
+    (click)="onBookAppointment()"
+  >
+    <span class="btn-shine" aria-hidden="true"></span>
+    <svg class="btn-icon-left" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+      <line x1="16" y1="2" x2="16" y2="6"></line>
+      <line x1="8" y1="2" x2="8" y2="6"></line>
+      <line x1="3" y1="10" x2="21" y2="10"></line>
+    </svg>
+    <span class="btn-label">Book an Appointment</span>
+    <svg class="btn-arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="5" y1="12" x2="19" y2="12"></line>
+      <polyline points="12 5 19 12 12 19"></polyline>
+    </svg>
+  </button>
+</div>
+
+@if (!headerOnly) {
+<!-- Hero & 4 Service Cards Section -->
+<section id="home" class="hero-section">
+  <!-- Animated Background SVG -->
+  <div class="hero-bg-animation" aria-hidden="true">
+    <svg class="bg-svg" viewBox="0 0 1440 720" fill="none" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <!-- Subtle Tech Grid Pattern -->
+        <pattern id="techGrid" width="48" height="48" patternUnits="userSpaceOnUse">
+          <path d="M 48 0 L 0 0 0 48" fill="none" stroke="#f2d675" stroke-opacity="0.12" stroke-width="1" />
+        </pattern>
+
+        <!-- Gradient for Flowing Data Streams -->
+        <linearGradient id="streamGrad1" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#d4af37" stop-opacity="0" />
+          <stop offset="50%" stop-color="#d4af37" stop-opacity="0.55" />
+          <stop offset="100%" stop-color="#d4af37" stop-opacity="0" />
+        </linearGradient>
+
+        <linearGradient id="streamGrad2" x1="100%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#d4af37" stop-opacity="0" />
+          <stop offset="50%" stop-color="#d4af37" stop-opacity="0.45" />
+          <stop offset="100%" stop-color="#d4af37" stop-opacity="0" />
+        </linearGradient>
+
+        <!-- Ambient Radial Glows -->
+        <radialGradient id="orbGlow1" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#d4af37" stop-opacity="0.16" />
+          <stop offset="100%" stop-color="#d4af37" stop-opacity="0" />
+        </radialGradient>
+
+        <radialGradient id="orbGlow2" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#d4af37" stop-opacity="0.18" />
+          <stop offset="100%" stop-color="#d4af37" stop-opacity="0" />
+        </radialGradient>
+      </defs>
+
+      <!-- Base Grid -->
+      <rect width="1440" height="720" fill="url(#techGrid)" />
+
+      <!-- Floating Ambient Orbs -->
+      <circle class="float-orb-slow" cx="380" cy="180" r="240" fill="url(#orbGlow1)" />
+      <circle class="float-orb-reverse" cx="1060" cy="240" r="280" fill="url(#orbGlow2)" />
+
+      <!-- Animated Circuit / Data Flow Curves -->
+      <path
+        class="data-stream stream-1"
+        d="M -100 140 C 260 60, 480 280, 820 190 C 1100 115, 1300 220, 1540 130"
+        stroke="url(#streamGrad1)"
+        stroke-width="2"
+      />
+      <path
+        class="data-stream stream-2"
+        d="M -80 320 C 310 410, 620 180, 960 290 C 1200 365, 1360 250, 1520 310"
+        stroke="url(#streamGrad2)"
+        stroke-width="1.75"
+      />
+      <path
+        class="data-stream stream-3"
+        d="M 120 -40 C 240 220, 140 460, 340 760"
+        stroke="url(#streamGrad1)"
+        stroke-width="1.5"
+      />
+      <path
+        class="data-stream stream-4"
+        d="M 1280 -20 C 1150 240, 1310 480, 1120 760"
+        stroke="url(#streamGrad2)"
+        stroke-width="1.5"
+      />
+
+      <!-- Pulsing Network Nodes -->
+      <g class="network-nodes">
+        <circle class="node-pulse" cx="280" cy="128" r="4" fill="#d4af37" />
+        <circle class="node-ring" cx="280" cy="128" r="10" stroke="#b8860b" stroke-width="1.2" />
+
+        <circle class="node-pulse delay-1" cx="820" cy="190" r="4" fill="#d4af37" />
+        <circle class="node-ring delay-1" cx="820" cy="190" r="10" stroke="#b8860b" stroke-width="1.2" />
+
+        <circle class="node-pulse delay-2" cx="1160" cy="168" r="4" fill="#d4af37" />
+        <circle class="node-ring delay-2" cx="1160" cy="168" r="10" stroke="#b8860b" stroke-width="1.2" />
+      </g>
+    </svg>
+  </div>
+
+  <div class="hero-container">
+    <!-- Top Pill Badge -->
+    <div class="eyebrow-pill">IT solutions beyond expectations</div>
+
+    <!-- Main Headline with Writable Animation -->
+    <h1 class="hero-title" aria-label="AI Software Solutions, Data Intelligence & Reliable Operations">
+      <span class="typed-line">
+        {{ typedLine1() }}@if (activeLine() === 1) {<span class="typing-cursor" aria-hidden="true">|</span>}
+      </span>
+      <br />
+      <span class="typed-line">
+        {{ typedLine2() }}@if (activeLine() === 2) {<span class="typing-cursor" aria-hidden="true">|</span>}
+      </span>
+    </h1>
+
+    <!-- Subheadline -->
+    <p class="hero-subtitle">
+      Custom Software and Mobile applications, resilient API Integrations, AI Integration and LLM models, and actionable analytics built for growth.
+    </p>
+
+    <!-- Services placed directly on the hero image -->
+    <div class="hero-services">
+      @for (card of coreServices; track card.number) {
+        <div class="hero-service" (click)="onNavClick(card.targetId, 'services')"
+          (keydown.enter)="onNavClick(card.targetId, 'services')" role="button" tabindex="0">
+          <h2 class="hero-service-title">{{ card.title }}</h2>
+          <p class="hero-service-desc">{{ card.description }}</p>
+          <span class="hero-service-link">Explore Service &rarr;</span>
+        </div>
+      }
+    </div>
+
+    <div class="hero-ai" (click)="onNavClick('ai-services', 'ai-services')"
+      (keydown.enter)="onNavClick('ai-services', 'ai-services')" role="button" tabindex="0">
+      <div>
+        <span class="hero-ai-tag">NEW &bull; AI SERVICES</span>
+        <h2 class="hero-ai-title">Custom AI Chatbots &amp; Intelligent Business Assistants</h2>
+        <p class="hero-service-desc">
+          Customer Support Bots &bull; Product Recommendations &bull; Website &amp; WhatsApp AI Assistants &bull; Internal Employee &amp; Company Document Q&amp;A
+        </p>
+      </div>
+      <span class="hero-service-link">Explore AI Services &rarr;</span>
+    </div>
+  </div> 
+</section>
+}
