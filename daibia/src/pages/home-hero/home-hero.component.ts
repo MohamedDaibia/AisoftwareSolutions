@@ -45,7 +45,7 @@ activeNav = signal<string>('home');
   private readonly line2Text = '& Reliable Operations';
   private typingTimer?: ReturnType<typeof setTimeout>;
 
-  private readonly bookingUrl = 'https://calendar.app.google/bk9Hmp2xW5NEpo238';
+  private readonly bookingUrl = 'https://calendar.app.google/BGy5TATYAKsGozjV6';
 
   onBookAppointment(): void {
     this.activeNav.set('contact');
